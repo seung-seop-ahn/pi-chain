@@ -17,10 +17,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/<your-username>/pi-chain"
+    "url": "https://github.com/seung-seop-ahn/pi-chain"
   },
   "pi": {
-    "extensions": ["./index.ts"]
+    "extensions": [
+      "./index.ts"
+    ]
   },
   "peerDependencies": {
     "@earendil-works/pi-ai": "*",
