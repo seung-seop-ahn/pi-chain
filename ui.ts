@@ -97,7 +97,7 @@ export async function showMainMenu(ctx: ExtensionContext): Promise<string | null
       invalidate: () => container.invalidate(),
       handleInput: (data: string) => { selectList.handleInput(data); tui.requestRender(); },
     };
-  }, { overlay: true });
+  });
 }
 
 // ---------------------------------------------------------------------------
