@@ -1,0 +1,4 @@
+node_modules/
+.pi-chain/
+*.log
+.DS_Store
