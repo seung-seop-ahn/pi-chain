@@ -70,24 +70,25 @@ export function formatModel(r: ModelRef): string {
 }
 
 export function getAvailableModels(ctx: ExtensionContext): Model<Api>[] {
-  return ctx.modelRegistry.getAll();
+  return ctx.modelRegistry.getAvailable();
 }
 
 export function searchModels(
   ctx: ExtensionContext,
   query: string,
-  limit: number = MODEL_SEARCH_VISIBLE_ITEMS,
+  limit?: number,
 ): Model<Api>[] {
   const q = query.toLowerCase();
-  if (!q) return ctx.modelRegistry.getAll().slice(0, limit);
-  const all = ctx.modelRegistry.getAll().filter((m) => {
+  const all = ctx.modelRegistry.getAvailable();
+  if (!q) return limit != null ? all.slice(0, limit) : all;
+  const filtered = all.filter((m) => {
     return (
       m.id.toLowerCase().includes(q) ||
       (m.provider && m.provider.toLowerCase().includes(q)) ||
       (m.name && m.name.toLowerCase().includes(q))
     );
   });
-  return all.slice(0, limit);
+  return limit != null ? filtered.slice(0, limit) : filtered;
 }
 
 // ---------------------------------------------------------------------------

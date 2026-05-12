@@ -29,10 +29,8 @@ import {
   formatModel,
   getAvailableModels,
   MODEL_PICKER_WINDOW,
-  MODEL_SEARCH_VISIBLE_ITEMS,
   searchFiles,
   searchModels,
-  SETTINGS_MODEL_VISIBLE_ITEMS,
   SETTINGS_MODEL_WINDOW,
 } from "./utils";
 
@@ -407,7 +405,6 @@ async function pickModel(
   ctx: ExtensionContext,
   title: string,
   windowSize: number = MODEL_PICKER_WINDOW,
-  visibleItems: number = MODEL_SEARCH_VISIBLE_ITEMS,
 ): Promise<ModelRef | null> {
   const allModels = getAvailableModels(ctx);
 
@@ -420,7 +417,7 @@ async function pickModel(
     function refresh() { cachedLines = undefined; tui.requestRender(); }
 
     function getFilteredModels(): Model<Api>[] {
-      return query ? searchModels(ctx, query, visibleItems) : allModels.slice(0, visibleItems);
+      return query ? searchModels(ctx, query) : allModels;
     }
 
     function getFilteredItems(): SelectItem[] {
@@ -1131,5 +1128,5 @@ async function renderSettings(
 }
 
 export async function selectModel(ctx: ExtensionContext, title: string): Promise<ModelRef | null> {
-  return pickModel(ctx, title, SETTINGS_MODEL_WINDOW, SETTINGS_MODEL_VISIBLE_ITEMS);
+  return pickModel(ctx, title, SETTINGS_MODEL_WINDOW);
 }
