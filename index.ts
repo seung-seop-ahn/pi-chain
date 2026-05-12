@@ -50,7 +50,7 @@ function resolveModel(ctx: ExtensionContext, ref: ModelRef): Model<Api> | undefi
     return ctx.modelRegistry.find(ref.provider, ref.id);
   }
   // Provider-less: search by ID across all registered providers
-  return ctx.modelRegistry.all().find((m) => m.id === ref.id);
+  return ctx.modelRegistry.getAll().find((m) => m.id === ref.id);
 }
 
 // ---------------------------------------------------------------------------

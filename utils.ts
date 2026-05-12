@@ -70,7 +70,7 @@ export function formatModel(r: ModelRef): string {
 }
 
 export function getAvailableModels(ctx: ExtensionContext): Model<Api>[] {
-  return ctx.modelRegistry.all();
+  return ctx.modelRegistry.getAll();
 }
 
 export function searchModels(
@@ -79,8 +79,8 @@ export function searchModels(
   limit: number = MODEL_SEARCH_VISIBLE_ITEMS,
 ): Model<Api>[] {
   const q = query.toLowerCase();
-  if (!q) return ctx.modelRegistry.all().slice(0, limit);
-  const all = ctx.modelRegistry.all().filter((m) => {
+  if (!q) return ctx.modelRegistry.getAll().slice(0, limit);
+  const all = ctx.modelRegistry.getAll().filter((m) => {
     return (
       m.id.toLowerCase().includes(q) ||
       (m.provider && m.provider.toLowerCase().includes(q)) ||
